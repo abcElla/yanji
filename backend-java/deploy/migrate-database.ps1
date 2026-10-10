@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$ConfigFile = "$PSScriptRoot/deployment.local.json")
+param([string]$ConfigFile = '')
 . "$PSScriptRoot/common.ps1"
 $c = Get-DeploymentConfig $ConfigFile
 $null = Invoke-DeploymentSql $c 'CREATE TABLE IF NOT EXISTS yanji_schema_migrations (filename VARCHAR(160) PRIMARY KEY, sha256 CHAR(64) NOT NULL, applied_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);'

@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$ConfigFile = "$PSScriptRoot/deployment.local.json", [string]$AdminUser = 'root', [switch]$WithDemo)
+param([string]$ConfigFile = '', [string]$AdminUser = 'root', [switch]$WithDemo)
 . "$PSScriptRoot/common.ps1"
 $c = Get-DeploymentConfig $ConfigFile
 $adminPassword = Read-PrivateValue 'MySQL administrator password (hidden)'

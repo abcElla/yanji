@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$ConfigFile = "$PSScriptRoot/deployment.local.json", [switch]$DemoLogin)
+param([string]$ConfigFile = '', [switch]$DemoLogin)
 . "$PSScriptRoot/common.ps1"
 $c = Get-DeploymentConfig $ConfigFile
 $base = "http://127.0.0.1:$($c.BackendPort)"

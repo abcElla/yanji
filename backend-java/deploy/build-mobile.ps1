@@ -3,7 +3,7 @@ param([Parameter(Mandatory=$true)][string]$ApiBaseUrl, [switch]$Install, [string
 . "$PSScriptRoot/common.ps1"
 $uri = $null
 if (![Uri]::TryCreate($ApiBaseUrl,[UriKind]::Absolute,[ref]$uri) -or $uri.Scheme -notin @('http','https')) { throw 'ApiBaseUrl must be an absolute HTTP(S) URL.' }
-if (!(Test-Path -LiteralPath (Join-Path $MobileProject 'pubspec.yaml'))) { throw 'Clone the frontend-flutter branch beside backend-java first.' }
+if (!(Test-Path -LiteralPath (Join-Path $MobileProject 'pubspec.yaml'))) { throw 'Clone the complete yanji repository; frontend-flutter must be beside backend-java.' }
 Push-Location $MobileProject
 try {
     & flutter.bat pub get

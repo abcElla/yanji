@@ -8,7 +8,8 @@ $AgentProject = Join-Path $SourceRoot 'agent-java/agent-java'
 $MobileProject = Join-Path $SourceRoot 'frontend-flutter/frontend/apps/mobile'
 function Get-DeploymentConfig {
     param([string]$ConfigFile = (Join-Path $DeployDir 'deployment.local.json'))
-    if (!(Test-Path -LiteralPath $ConfigFile)) { throw 'Run deploy/setup.ps1 first.' }
+    if (!$ConfigFile) { $ConfigFile = Join-Path $DeployDir 'deployment.local.json' }
+    if (!(Test-Path -LiteralPath $ConfigFile)) { throw "Configuration not found: $ConfigFile. Run deploy/setup.ps1 first." }
     $c = Get-Content -LiteralPath $ConfigFile -Raw -Encoding UTF8 | ConvertFrom-Json
     foreach ($name in @('Database','DatabaseUser')) {
         if ($c.$name -notmatch '^[A-Za-z][A-Za-z0-9_]{0,31}$') { throw "Invalid identifier: $name" }
@@ -25,8 +26,8 @@ function Use-DeploymentJava {
         $env:PATH = (Join-Path $Config.JavaHome 'bin') + ';' + $env:PATH
     }
     $java = (Get-Command java.exe -ErrorAction Stop).Source
-    $version = (& $java -version 2>&1 | Out-String)
-    if ($version -notmatch 'version "(\d+)' -or [int]$Matches[1] -lt 21) { throw 'JDK 21 or newer is required.' }
+    $version = (& $java --version | Out-String)
+    if ($LASTEXITCODE -ne 0 -or $version -notmatch '(?m)^(?:openjdk|java)\s+(\d+)' -or [int]$Matches[1] -lt 21) { throw 'JDK 21 or newer is required.' }
     return $java
 }
 function ConvertTo-SqlLiteral {

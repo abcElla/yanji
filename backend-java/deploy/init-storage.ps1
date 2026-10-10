@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$ConfigFile = "$PSScriptRoot/deployment.local.json")
+param([string]$ConfigFile = '')
 . "$PSScriptRoot/common.ps1"
 $c = Get-DeploymentConfig $ConfigFile
 $java = Use-DeploymentJava $c

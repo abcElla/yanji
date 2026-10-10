@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$ConfigFile = "$PSScriptRoot/deployment.local.json")
+param([string]$ConfigFile = '')
 . "$PSScriptRoot/common.ps1"
 $c = Get-DeploymentConfig $ConfigFile
 if (!$c.ModelApiKey -or $c.ModelApiKey -eq 'fill-in-locally') { throw 'Set ModelApiKey in private deployment.local.json before starting the agent.' }
