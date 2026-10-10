@@ -2,13 +2,27 @@
 
 本指南帮助使用者从 GitHub 获取研迹，在自己的 Windows 电脑上部署数据库、文件存储、业务后端和 AI Agent，再把 Android 客户端安装到手机上。电脑运行服务，手机通过同一局域网访问电脑的业务接口。按下面步骤可以完成一次完整安装。
 
+## 评审材料
+
+比赛提交材料集中放在 [docs/提交材料](docs/提交材料) 目录，供评委查看：
+
+| 材料 | 文件 |
+| --- | --- |
+| 项目演示视频 | [演示视频.mp4](docs/提交材料/演示视频.mp4)（约 18 MB，可下载播放） |
+| 技术文档 | [研迹-技术文档.docx](docs/提交材料/研迹-技术文档.docx) |
+| 评测用例集 | [研迹-评测用例集.docx](docs/提交材料/研迹-评测用例集.docx) |
+| 部署说明提交文件 | [README.md](docs/提交材料/README.md) |
+| 合规说明 | [合规说明.pdf](docs/提交材料/合规说明.pdf) |
+
+需要部署运行项目时，继续阅读下方的安装步骤。
+
 ## 1. 安装前准备
 
 准备一台 Windows 10/11 64 位电脑、一部 Android 手机和可访问互联网的网络。电脑与手机连接同一 Wi-Fi；AI 功能还需要可用的阿里云百炼 API Key 和模型额度。
 
 | 软件 | 用途与安装要求 |
 | --- | --- |
-| [Git](https://git-scm.com/download/win) | 获取三个源码分支，安装时启用命令行使用 |
+| [Git](https://git-scm.com/download/win) | 获取项目源码，安装时启用命令行使用 |
 | [JDK 21](https://adoptium.net/temurin/releases/?version=21) 或更高版本 | 编译和运行两个 Java 服务；设置 `JAVA_HOME` 并将 `bin` 加入 PATH |
 | [Maven 3.9](https://maven.apache.org/download.cgi) 或更高版本 | 解压安装，将 `bin` 加入 PATH |
 | [MySQL 8.4 LTS](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html) | 安装 Server 和命令行客户端，设置并记住 root 密码，启动 MySQL Windows 服务，默认端口 3306 |
