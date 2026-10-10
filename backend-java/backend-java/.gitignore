@@ -1,0 +1,15 @@
+/target/
+/.m2/
+/data/
+/private_files/
+/logs/
+/runtime/
+/config/application-local.yml
+/config/java-path.local.txt
+/.env
+
+/.idea/
+**/__pycache__/
+*.pyc
+/logs-local.out
+/logs-local.err

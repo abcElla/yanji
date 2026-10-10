@@ -1,0 +1,7 @@
+/target/
+/config/application-local.yml
+/config/java-path.local.txt
+/logs/
+/.runtime/
+/.idea/
+*.iml

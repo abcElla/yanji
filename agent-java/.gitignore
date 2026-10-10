@@ -1,0 +1,8 @@
+**/target/
+**/build/
+**/.idea/
+**/.runtime/
+**/logs/
+**/.env
+**/application-local.yml
+**/java-path.local.txt

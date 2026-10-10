@@ -1,0 +1,5 @@
+任务：只解读context.paper对应的授权文献片段。区分作者原文结论、方法、局限与需要进一步阅读的问题，不能把片段当作已经阅读全文。
+可生成一个reading_note.draft建议。payload={"paper_id":"实际context.paper.id","task_id":null,"claims":["有来源的导读事实"],"questions":["待进一步阅读的问题"],"source_refs":["完整EvidenceRef对象，不是字符串"]}。
+task_id只允许context.subject.task_id的原值。如果subject没有task_id，必须输出JSON null，不能输出字符串"null"、"subject.task_id或null"，不能从context.tasks挑选其他任务，也不能把paper_id当成task_id。没有任务关联的论文导读仍可生成独立阅读笔记。
+每条事实须在result.claims给出对应引用；payload.source_refs引用相关片段。不要推断不可见的实验结果。
+每个quote只摘录支持该事实的一句连续原文，最多120字符（硬上限300字符）。整页/整段超过120字符时不得整体复制，分别选择短句并保留同一定位；不得拼接不连续句子或添加省略号。建议最外层source_refs与payload.source_refs均使用完整EvidenceRef对象，不能遗漏最外层引用。

@@ -1,0 +1,10 @@
+任务：只整理已经筛选到本周的confirmed_experiments和confirmed_notes。week_start是Asia/Shanghai的周一；记录已经由程序按确认时间筛选，不能补入历史进展。
+record_coverage说明后端内联范围。partial=true或source_scope_truncated=true时，本次没有补读省略记录，不能宣称完整总结所有本周记录；只整理本次可引用材料，范围提示由程序强制保留到结果及周报草稿。omitted_records_searchable=false时不能声称可补读所有省略来源。evidence_policy用于区分任务快照与来源引文，规则只能支持要求。
+采用引用编号目录时，result.claims和done_items的text会由程序替换为所引原文摘录；一条结果不能支持多个未引用记录的结论。issues、next_plan、help_needed仍为待核对的问题或建议，不能把它们当作已完成事实。
+可生成一个weekly_report.draft建议。payload={"week_start":"与input.week_start完全相同","done_items":[{"text":"已证实进展","source_refs":[{"source_id":"照抄evidence","source_revision":1,"chunk_id":"照抄evidence","locator":{"kind":"record_field","field":"results"},"quote":"对应evidence.text中逐字存在的连续原文"}]}],"issues":[],"next_plan":[],"help_needed":[]}。
+上面的payload展示字段形状，实际非空条目必须将source_refs填为evidence中真实可回查引用。proposal自身的source_refs也需要包含支持这些周报条目的引用，不能因为done_items已带引用而省略外层引用。
+各段均是条目数组，条目只填text及完整source_refs对象，由程序生成id和origin。
+已完成工作仅放done_items；尚未实施的建议放next_plan并明确是计划。所有非空条目都需来源，缺乏来源则保持对应数组为空。
+没有本周事实不能生成进展；不得把下一步计划说成已完成。
+confirmed记录正文提供背景，不能自行转换为引用；has_citable_evidence=false的记录没有检索到引用，不能据其生成claims或周报条目。所有引用只能逐字复制evidence中的source_id、source_revision、chunk_id、locator，不能使用记录id或猜测chunk_id；无chunk_id时原样使用null。quote必须逐字来自该evidence.text，而非其他上下文字段。宁可只选有直接证据的记录，不为未检索记录编造定位。
+周报输出应精炼，选择关键进展，不追求覆盖每一条资料。summary不超过120字；claims最多2条，每条text不超过80字；最多1个weekly_report.draft，done_items最多2项，每项text不超过100字。issues、next_plan、help_needed只在有直接引用且必要时填写，每组最多1项，否则为空。每个引用的quote选择最短且支持事实的连续原文，建议不超过40字；不要整段抄写资料。同一对象只引用支持该对象的必要来源。limitations明确“草稿选取本周关键事实，未穷尽所有记录，提交前需人工核对”。引用字段仍须完整，不能为了缩短而省略。

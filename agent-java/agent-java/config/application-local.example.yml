@@ -1,0 +1,13 @@
+server:
+  # Listen on the EasyTier interface; set this to this machine's actual IPv4.
+  address: 192.168.8.222
+  port: 8091
+spring:
+  ai:
+    openai:
+      api-key: fill-your-qwen-key-here
+agent:
+  receiver-key: fill-a-random-private-key-at-least-32-characters
+  backend:
+    base-url: http://192.168.8.230:8000
+    service-key: fill-the-backend-internal-service-key-here

@@ -1,0 +1,1816 @@
+{
+  "users": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "username": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "password_hash": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "display_name": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "account_role": {
+      "kind": "string",
+      "default": "student",
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "active",
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "sessions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "user_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "token_hash": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "installation_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "device_label": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "expires_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": false
+    },
+    "revoked_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "last_seen_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "labs": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "name": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "active",
+      "nullable": false
+    }
+  },
+  "memberships": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "user_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "role": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "active": {
+      "kind": "boolean",
+      "default": true,
+      "nullable": false
+    }
+  },
+  "mentorships": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "mentor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "active": {
+      "kind": "boolean",
+      "default": true,
+      "nullable": false
+    }
+  },
+  "mentor_applications": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "mentor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "pending",
+      "nullable": false
+    },
+    "rejection_reason": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "decided_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "invitations": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "code_hash": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "intended_role": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "mentor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "expires_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": false
+    },
+    "used_by": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "stage_rule_sets": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "rules_json": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "approved_by": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "effective_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "stages": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "title": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "goal": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "due_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "rule_set_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "status": {
+      "kind": "string",
+      "default": "active",
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "stage_submissions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "stage_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "stage_version": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "actor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "evidence_refs": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "submitted_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "reviewed_by": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "review_decision": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "review_comment": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "reviewed_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "tasks": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "stage_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "title": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "description": {
+      "kind": "string",
+      "default": "",
+      "nullable": false
+    },
+    "type": {
+      "kind": "string",
+      "default": "other",
+      "nullable": false
+    },
+    "due_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "status": {
+      "kind": "string",
+      "default": "todo",
+      "nullable": false
+    },
+    "priority": {
+      "kind": "integer",
+      "default": 2,
+      "nullable": false
+    },
+    "acceptance_criteria": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "dependency_ids": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "origin": {
+      "kind": "string",
+      "default": "human",
+      "nullable": false
+    },
+    "created_by": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "task_dependencies": {
+    "task_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "depends_on_task_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    }
+  },
+  "task_events": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "task_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "actor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "from_status": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "to_status": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "evidence_refs": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "comment": {
+      "kind": "string",
+      "default": "",
+      "nullable": false
+    },
+    "happened_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "sources": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "owner_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "kind": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "entity_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "visibility": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "active_revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "revoked_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "source_revisions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "source_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "content_hash": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "locator_scheme": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "file_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "text_snapshot": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "files": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "owner_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "client_upload_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "purpose": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "object_key": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "sha256": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "size": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "mime": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "upload_status": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "scan_status": {
+      "kind": "string",
+      "default": "skipped",
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "papers": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "owner_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "title": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "authors": {
+      "kind": "json",
+      "default": null,
+      "nullable": true
+    },
+    "publication_year": {
+      "kind": "integer",
+      "default": null,
+      "nullable": true
+    },
+    "doi": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "file_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "visibility": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "ingest_status": {
+      "kind": "string",
+      "default": "queued",
+      "nullable": false
+    },
+    "ingest_error_code": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "source_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "revoked_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "reading_notes": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "owner_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "paper_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "task_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "current_revision": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "draft",
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "reading_note_revisions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "note_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "claims": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "questions": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "source_refs": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "confirmed_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "experiments": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "owner_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "task_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "current_revision": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "draft",
+      "nullable": false
+    },
+    "visibility": {
+      "kind": "string",
+      "default": "private",
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "experiment_revisions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "experiment_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "purpose": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "parameters_json": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "steps_json": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "results_text": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "reflection": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "file_ids": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "confirmed_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "weekly_reports": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "week_start": {
+      "kind": "date",
+      "default": null,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "draft",
+      "nullable": false
+    },
+    "current_revision": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "done_items": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "issues": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "next_plan": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "help_needed": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "weekly_report_revisions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "report_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "content": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "submitted_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "mentor_reviews": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "report_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "report_revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "mentor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "decision": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "body": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "worker_heartbeats": {
+    "id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "kind": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "execution_mode": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "host": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "pid": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "updated_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "agent_runs": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "requested_by": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "kind": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "subject": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "input": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "queued",
+      "nullable": false
+    },
+    "step": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "attempt": {
+      "kind": "integer",
+      "default": 0,
+      "nullable": false
+    },
+    "lease_expiry": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "lease_token_hash": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "snapshot_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "result": {
+      "kind": "json",
+      "default": null,
+      "nullable": true
+    },
+    "error": {
+      "kind": "json",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "started_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "finished_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    }
+  },
+  "agent_run_events": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "run_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "attempt": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "event_key": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "seq": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "step": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "message": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "context_snapshots": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "run_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "authorized_scope": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "source_versions": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "business_versions": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "chunks": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "source_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "source_revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "chunk_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "text": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "locator": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "embedding": {
+      "kind": "json",
+      "default": null,
+      "nullable": true
+    },
+    "model_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "index_version": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "proposals": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "run_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "target_student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "action_type": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "target": {
+      "kind": "json",
+      "default": null,
+      "nullable": true
+    },
+    "payload": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "reason": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "source_refs": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "base_versions": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "status": {
+      "kind": "string",
+      "default": "pending",
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "expires_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": false
+    },
+    "execution_receipt": {
+      "kind": "json",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "proposal_executions": {
+    "proposal_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "actor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "receipt_json": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "applied_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "mentor_review_drafts": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "report_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "report_revision": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "mentor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "body": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "notifications": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "recipient_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "business_key": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "type": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "target": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "read_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "closed_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "outbox_events": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "event_type": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "payload": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "published_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "attempt_count": {
+      "kind": "integer",
+      "default": 0,
+      "nullable": false
+    },
+    "next_attempt_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "locked_until": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "idempotency_records": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "actor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "method": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "path": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "key": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "body_hash": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "response": {
+      "kind": "json",
+      "default": null,
+      "nullable": false
+    },
+    "expires_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": false
+    }
+  },
+  "theses": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "title": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "thesis_revisions": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "thesis_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "revision_number": {
+      "kind": "integer",
+      "default": null,
+      "nullable": false
+    },
+    "file_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "paper_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "change_summary": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "thesis_feedback": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "revision_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "mentor_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "content": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "decision": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "research_followups": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "recipient_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "state": {
+      "kind": "string",
+      "default": "waiting",
+      "nullable": false
+    },
+    "changes": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "run_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": true
+    },
+    "run_created_at": {
+      "kind": "datetime",
+      "default": null,
+      "nullable": true
+    },
+    "task_ids": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "applied_items": {
+      "kind": "json",
+      "default": [],
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "updated_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    }
+  },
+  "research_followup_events": {
+    "id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "event_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "recipient_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "followup_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "research_followup_settings": {
+    "id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "enabled_since": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    }
+  },
+  "research_experiences": {
+    "id": {
+      "kind": "string",
+      "default": "@uuid",
+      "nullable": false
+    },
+    "lab_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "student_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "recipient_id": {
+      "kind": "string",
+      "default": null,
+      "nullable": false
+    },
+    "payload": {
+      "kind": "json",
+      "default": {},
+      "nullable": false
+    },
+    "created_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "updated_at": {
+      "kind": "datetime",
+      "default": "@now",
+      "nullable": false
+    },
+    "version": {
+      "kind": "integer",
+      "default": 1,
+      "nullable": false
+    }
+  }
+}

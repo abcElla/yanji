@@ -1,0 +1,535 @@
+{
+  "$ref": "#/$defs/FinalizeIn",
+  "$defs": {
+    "EvidenceRef": {
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "format": "uuid",
+          "title": "Source Id"
+        },
+        "source_revision": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Source Revision"
+        },
+        "chunk_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 80
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Chunk Id"
+        },
+        "locator": {
+          "$ref": "#/$defs/EvidenceLocator"
+        },
+        "quote": {
+          "type": "string",
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Quote"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "source_id",
+        "source_revision",
+        "locator",
+        "quote"
+      ],
+      "title": "EvidenceRef"
+    },
+    "Claim": {
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 5000,
+          "minLength": 1,
+          "title": "Text"
+        },
+        "source_refs": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "type": "array",
+          "title": "Source Refs"
+        },
+        "anchor_id": {
+          "type": "string",
+          "maxLength": 40
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "title": "Claim"
+    },
+    "AgentResultIn": {
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "insufficient_evidence",
+            "needs_input"
+          ],
+          "title": "Outcome"
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 5000,
+          "minLength": 1,
+          "title": "Summary"
+        },
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/Claim"
+          },
+          "type": "array",
+          "title": "Claims"
+        },
+        "missing_inputs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "title": "Missing Inputs"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "title": "Limitations"
+        },
+        "next_steps": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "$ref": "#/$defs/ResearchNextStep"
+          }
+        },
+        "suggested_skills": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/ResearchSkill"
+          }
+        },
+        "feedback_interpretations": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "memory_index": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "source_quote": {
+                "type": "string",
+                "maxLength": 400
+              },
+              "direct_request": {
+                "type": "boolean"
+              },
+              "intent": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string",
+                "maxLength": 400
+              },
+              "requested_change": {
+                "type": "string",
+                "maxLength": 400
+              },
+              "applicable_scenario": {
+                "type": "string",
+                "maxLength": 400
+              },
+              "reuse_scope": {
+                "type": "string"
+              },
+              "interpretation_is_confirmed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "memory_index",
+              "source_quote",
+              "direct_request",
+              "intent"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "outcome",
+        "summary"
+      ],
+      "title": "AgentResultIn"
+    },
+    "FinalizeIn": {
+      "properties": {
+        "attempt": {
+          "type": "integer",
+          "minimum": 1.0,
+          "title": "Attempt"
+        },
+        "result": {
+          "$ref": "#/$defs/AgentResultIn"
+        },
+        "proposal_drafts": {
+          "items": {
+            "$ref": "#/$defs/ProposalDraft"
+          },
+          "type": "array",
+          "maxItems": 20,
+          "title": "Proposal Drafts"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "attempt",
+        "result"
+      ],
+      "title": "FinalizeIn"
+    },
+    "ProposalDraft": {
+      "properties": {
+        "action_type": {
+          "type": "string",
+          "enum": [
+            "task.create_batch",
+            "task.reschedule_batch",
+            "weekly_report.draft",
+            "reading_note.draft",
+            "mentor_feedback.draft"
+          ],
+          "title": "Action Type"
+        },
+        "target_student_id": {
+          "type": "string",
+          "format": "uuid",
+          "title": "Target Student Id"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Target"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Payload"
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 5000,
+          "minLength": 1,
+          "title": "Reason"
+        },
+        "source_refs": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "type": "array",
+          "title": "Source Refs"
+        },
+        "base_versions": {
+          "items": {
+            "$ref": "#/$defs/BaseVersion"
+          },
+          "type": "array",
+          "minItems": 1,
+          "title": "Base Versions"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Expires At"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "action_type",
+        "target_student_id",
+        "payload",
+        "reason",
+        "base_versions",
+        "expires_at"
+      ],
+      "title": "ProposalDraft"
+    },
+    "EvidenceLocator": {
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "pdf_page",
+            "docx_paragraph",
+            "record_field"
+          ],
+          "title": "Kind"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Page"
+        },
+        "paragraph": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1.0
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Paragraph"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Field"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "title": "EvidenceLocator"
+    },
+    "BaseVersion": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "task",
+            "stage",
+            "weekly_report",
+            "paper",
+            "reading_note",
+            "mentor_review_draft"
+          ],
+          "title": "Type"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Id"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0.0,
+          "title": "Version"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "version"
+      ],
+      "title": "BaseVersion"
+    },
+    "ResearchNextStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 5000
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "reading",
+            "experiment",
+            "writing",
+            "other"
+          ]
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "step_id": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "task_mode": {
+          "type": "string",
+          "enum": [
+            "existing",
+            "new"
+          ]
+        },
+        "existing_task_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "depends_on": {
+          "type": "array",
+          "maxItems": 50,
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected_version": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "ResearchSkill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "risk_brief",
+            "stage_plan",
+            "weekly_report",
+            "paper_guide"
+          ]
+        },
+        "route": {
+          "type": "string",
+          "enum": [
+            "/work",
+            "/library",
+            "/theses"
+          ]
+        },
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "student_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "stage_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "paper_id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "week_start": {
+              "type": "string",
+              "format": "date"
+            },
+            "horizon_days": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30
+            }
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "kind",
+            "subject",
+            "input"
+          ]
+        },
+        {
+          "required": [
+            "route"
+          ]
+        }
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

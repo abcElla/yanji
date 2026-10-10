@@ -1,0 +1,23 @@
+# Copy this file to config/application-local.yml. Keep real credentials private.
+# Start with --spring.profiles.active=mysql,local to reuse MySQL.
+server:
+  address: 0.0.0.0
+  port: 8000
+yanji:
+  retrieval-mode: hybrid
+  embedding-url: http://127.0.0.1:8092/v1/embeddings
+  embedding-model: BAAI/bge-small-zh-v1.5
+  redis-enabled: true
+  redis-cache-ttl-seconds: 60
+  storage-backend: minio
+  minio-endpoint: ${MINIO_ENDPOINT:http://127.0.0.1:9000}
+  minio-access-key: ${MINIO_ACCESS_KEY}
+  minio-secret-key: ${MINIO_SECRET_KEY}
+  minio-bucket: ${MINIO_BUCKET:yanji-files}
+  # Reuse the exact existing storage path for previously uploaded local files.
+  storage-root: D:/work/中兴杯/backend/private_files
+  # Supply via environment variables or a private local file.
+  internal-service-key: ${INTERNAL_SERVICE_KEY:}
+  agent-execution-mode: external
+  agent-dispatch-url: ${AGENT_DISPATCH_URL:}
+  agent-receiver-key: ${AGENT_RECEIVER_KEY:}

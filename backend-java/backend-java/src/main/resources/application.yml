@@ -1,0 +1,67 @@
+server:
+  port: ${SERVER_PORT:8000}
+logging:
+  file:
+    name: ./logs/backend-java.log
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 7
+      total-size-cap: 100MB
+  pattern:
+    level: "%5p [request_id=%X{requestId:-}]"
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: ${REDIS_DATABASE:0}
+      timeout: 1s
+      connect-timeout: 1s
+  task:
+    scheduling:
+      pool:
+        size: 3
+  datasource:
+    url: ${JDBC_URL:jdbc:h2:file:./data/yanji;MODE=MySQL;DATABASE_TO_LOWER=TRUE;NON_KEYWORDS=KEY}
+    username: ${JDBC_USER:sa}
+    password: ${JDBC_PASSWORD:}
+    hikari:
+      connection-init-sql: ${JDBC_INIT_SQL:SET TIME ZONE 'UTC'}
+  sql:
+    init:
+      mode: ${DB_INIT_MODE:embedded}
+      schema-locations: classpath:schema-h2.sql
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 21MB
+  jackson:
+    time-zone: UTC
+yanji:
+  feedback-learning-enabled: ${FEEDBACK_LEARNING_ENABLED:true}
+  constrained-reasoning-enabled: ${CONSTRAINED_REASONING_ENABLED:true}
+  retrieval-mode: ${RETRIEVAL_MODE:lexical}
+  embedding-url: ${EMBEDDING_URL:http://127.0.0.1:8092/v1/embeddings}
+  embedding-model: ${EMBEDDING_MODEL:BAAI/bge-small-zh-v1.5}
+  embedding-version: ${EMBEDDING_VERSION:1}
+  embedding-key: ${EMBEDDING_KEY:}
+  redis-enabled: ${REDIS_ENABLED:false}
+  redis-cache-ttl-seconds: ${REDIS_CACHE_TTL_SECONDS:60}
+  storage-root: ${STORAGE_ROOT:./private_files}
+  storage-backend: ${STORAGE_BACKEND:local}
+  minio-endpoint: ${MINIO_ENDPOINT:http://127.0.0.1:9000}
+  minio-access-key: ${MINIO_ACCESS_KEY:}
+  minio-secret-key: ${MINIO_SECRET_KEY:}
+  minio-bucket: ${MINIO_BUCKET:yanji-files}
+  internal-service-key: ${INTERNAL_SERVICE_KEY:}
+  agent-execution-mode: ${AGENT_EXECUTION_MODE:external}
+  agent-dispatch-url: ${AGENT_DISPATCH_URL:}
+  agent-receiver-key: ${AGENT_RECEIVER_KEY:}
+  agent-model-url: ${AGENT_MODEL_URL:}
+  agent-model-name: ${AGENT_MODEL_NAME:}
+  agent-model-key: ${AGENT_MODEL_KEY:}
+  workers-enabled: ${WORKERS_ENABLED:true}
+  session-days: ${SESSION_DAYS:7}
+  queue-warning-seconds: ${QUEUE_WARNING_SECONDS:300}

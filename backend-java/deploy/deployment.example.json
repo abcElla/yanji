@@ -1,0 +1,21 @@
+{
+  "JavaHome": "",
+  "MysqlExe": "mysql.exe",
+  "MinioExe": "minio.exe",
+  "MysqlHost": "127.0.0.1",
+  "MysqlPort": 3306,
+  "Database": "yanji",
+  "DatabaseUser": "yanji_app",
+  "DatabasePassword": "fill-in-locally",
+  "BackendPort": 8000,
+  "AgentPort": 8091,
+  "MinioPort": 9000,
+  "MinioConsolePort": 9001,
+  "MinioUser": "yanji_storage",
+  "MinioPassword": "fill-in-locally",
+  "InternalServiceKey": "generate-at-least-32-characters",
+  "AgentReceiverKey": "generate-at-least-32-characters",
+  "ModelApiKey": "fill-in-locally",
+  "ModelBaseUrl": "https://dashscope.aliyuncs.com/compatible-mode",
+  "ModelName": "qwen-plus"
+}

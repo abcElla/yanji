@@ -1,0 +1,18 @@
+
+CREATE TABLE IF NOT EXISTS research_followups (
+ id VARCHAR(36) PRIMARY KEY, lab_id VARCHAR(36) NOT NULL, student_id VARCHAR(36) NOT NULL,
+ recipient_id VARCHAR(36) NOT NULL, state VARCHAR(20) NOT NULL DEFAULT 'waiting',
+ changes JSON NOT NULL, run_id VARCHAR(36), run_created_at TIMESTAMP,
+ task_ids JSON NOT NULL, applied_items JSON NOT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ version INT NOT NULL DEFAULT 1
+);
+CREATE TABLE IF NOT EXISTS research_followup_events (
+ id VARCHAR(36) PRIMARY KEY, event_id VARCHAR(36) NOT NULL, recipient_id VARCHAR(36) NOT NULL,
+ followup_id VARCHAR(36) NOT NULL, created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ UNIQUE(event_id,recipient_id)
+);
+CREATE TABLE IF NOT EXISTS research_followup_settings (
+ id VARCHAR(36) PRIMARY KEY, enabled_since TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+INSERT IGNORE INTO research_followup_settings(id) VALUES ('global');
